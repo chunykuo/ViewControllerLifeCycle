@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController
 {
+    let stackView = UIStackView()
+    
     @IBAction func goToNextViewButtonPress(sender: UIButton)
     {
         print("go to Next View")
@@ -17,17 +19,19 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        print("1. view Did Load")
+        addNewLabelToStackView(labelString: "1. view Did Load")
+        
+        stackViewLayoutSetting()
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
-        print("2. view Will Appear")
+        addNewLabelToStackView(labelString: "2. view Will Appear")
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
-        print("3. view Did Appear")
+        addNewLabelToStackView(labelString: "3. view Did Appear")
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -38,6 +42,23 @@ class ViewController: UIViewController
     override func viewDidDisappear(_ animated: Bool)
     {
         print("2. view Did Disappear")
+    }
+    
+    func stackViewLayoutSetting()
+    {
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    func addNewLabelToStackView(labelString: String)
+    {
+        let label = UILabel()
+        label.text = labelString
+        stackView.addArrangedSubview(label)
+        print(labelString)
     }
 
 }
