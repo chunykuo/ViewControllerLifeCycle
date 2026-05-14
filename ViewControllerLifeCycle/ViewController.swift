@@ -10,19 +10,16 @@ import UIKit
 class ViewController: UIViewController
 {
     let stackView = UIStackView()
+    let nextPageButton = UIButton(type: .system)
     
-    @IBAction func goToNextViewButtonPress(sender: UIButton)
-    {
-        print("go to Next View")
-    }
-
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        title = "First View Controller"
         view.backgroundColor = .white
-        addNewLabelToStackView(labelString: "1. view Did Load")
-        
         stackViewLayoutSetting()
+        nextPageButtonLayoutSetting()
+        addNewLabelToStackView(labelString: "1. view Did Load")
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -48,10 +45,24 @@ class ViewController: UIViewController
     func stackViewLayoutSetting()
     {
         stackView.axis = .vertical
+        stackView.spacing = 12
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+
+    func nextPageButtonLayoutSetting()
+    {
+        nextPageButton.setTitle("Go To Next View", for: .normal)
+        nextPageButton.addTarget(self, action: #selector(goToNextViewButtonPress), for: .touchUpInside)
+        stackView.addArrangedSubview(nextPageButton)
+    }
+
+    @objc func goToNextViewButtonPress()
+    {
+        let nextViewController = NextViewController()
+        navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     func addNewLabelToStackView(labelString: String)
@@ -63,4 +74,3 @@ class ViewController: UIViewController
     }
 
 }
-

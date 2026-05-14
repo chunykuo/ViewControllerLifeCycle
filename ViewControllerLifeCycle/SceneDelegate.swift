@@ -18,10 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        
-        // 如果你用 storyboard，通常不用手動設 rootViewController
-        // 如果是純 code UI，才需要：
-        window.rootViewController = ViewController()
+        let rootViewController = ViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+
+        window.rootViewController = navigationController
         
         self.window = window
         window.makeKeyAndVisible()
