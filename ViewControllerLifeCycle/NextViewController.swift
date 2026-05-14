@@ -14,18 +14,5 @@ class NextViewController: ViewController
         super.viewDidLoad()
         title = "Next View Controller"
         view.backgroundColor = .systemBlue
-
-        let label = UILabel()
-        label.text = "This page is pushed by code."
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(label)
-
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
     }
 }
