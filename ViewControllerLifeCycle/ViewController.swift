@@ -20,6 +20,15 @@ class ViewController: UIViewController
         stackViewLayoutSetting()
         nextPageButtonLayoutSetting()
         addNewLabelToStackView(labelString: "1. view Did Load")
+        
+        if #available(iOS 13.0, *) {
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(sceneWillEnterForeground),
+                name: UIScene.willEnterForegroundNotification,
+                object: nil
+            )
+        }
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -73,4 +82,8 @@ class ViewController: UIViewController
         print(labelString)
     }
 
+    @objc func sceneWillEnterForeground()
+    {
+        addNewLabelToStackView(labelString: "application Will Enter Foreground")
+    }
 }
